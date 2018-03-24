@@ -6,7 +6,7 @@
 		$mysqlmanager = new MysqlManager();
 		$mysqlmanager->connect_database();
 		$mysqlmanager->create_table();
-		$mysqlmanager->insert_datas();
+		$mysqlmanager->query_datas();
 		$mysqlmanager->close_database();
 
 	}

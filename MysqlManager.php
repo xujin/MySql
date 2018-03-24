@@ -99,5 +99,26 @@
 			}
 			echo "数据插入成功\n";
 		}
+		public function query_datas()
+		{
+			$conn = $this->db_handle;
+			mysqli_query($conn, "set name utf8");
+			$sql = 'SELECT * FROM runoob_tbl';
+			mysqli_select_db( $conn, 'RUNOOB' );
+			$retval = mysqli_query( $conn, $sql );
+			if(! $retval )
+			{
+			    die('无法读取数据: ' . mysqli_error($conn));
+			}
+			
+			while($row = mysqli_fetch_array($retval, MYSQLI_ASSOC))
+			{
+			    echo "\n {$row['runoob_id']} {$row['runoob_title']}  {$row['runoob_author']}  {$row['submission_date']}";
+			}
+			echo "\n";
+			// 释放内存
+			mysqli_free_result($retval);
+
+		}
 	}
 ?>
