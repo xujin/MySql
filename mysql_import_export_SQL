@@ -1,0 +1,23 @@
+mysql命令 导入 导出sql文件
+
+导出数据库
+
+直接使用命令：
+
+mysqldump -u root -p abc >abc.sql
+
+然后回车输入密码就可以了；
+
+mysqldump -u 数据库链接用户名 -p  目标数据库 > 存储的文件名
+
+文件会导出到当前目录下
+
+导入数据库（sql文件）
+
+mysql -u 用户名 -p  数据库名 < 数据库名.sql
+mysql -u abc -p abc < abc.sql
+
+
+第二种：mysql> source /Users/xujin/Project/Database/employee_tbl.sql
+
+注意sql文件必须在当前目录下，如果不在当前目录下需要在< 之后加上具体sql文件路径

@@ -103,7 +103,12 @@
 		{
 			$conn = $this->db_handle;
 			mysqli_query($conn, "set name utf8");
-			$sql = 'SELECT * FROM runoob_tbl';
+			// $sql = 'SELECT runoob_id,runoob_title,runoob_author,submission_date FROM runoob_tbl';
+			// 读取 runoob_author 为 RUNOOB.COM 的数据
+			$sql = 'SELECT runoob_id, runoob_title, 
+			        runoob_author, submission_date
+			        FROM runoob_tbl
+			        WHERE runoob_author="RUNOOB.COM"';
 			mysqli_select_db( $conn, 'RUNOOB' );
 			$retval = mysqli_query( $conn, $sql );
 			if(! $retval )
@@ -111,14 +116,44 @@
 			    die('无法读取数据: ' . mysqli_error($conn));
 			}
 			
-			while($row = mysqli_fetch_array($retval, MYSQLI_ASSOC))
+			// while($row = mysqli_fetch_array($retval, MYSQLI_ASSOC))
+			// while($row = mysqli_fetch_assoc($retval))
+			// {
+			//     echo "\n {$row['runoob_id']} {$row['runoob_title']}  {$row['runoob_author']}  {$row['submission_date']}";
+			// }
+
+
+			while($row = mysqli_fetch_array($retval, MYSQLI_NUM))
 			{
-			    echo "\n {$row['runoob_id']} {$row['runoob_title']}  {$row['runoob_author']}  {$row['submission_date']}";
+			    echo "\n {$row['0']} {$row['1']}  {$row['2']}  {$row['3']}";
 			}
 			echo "\n";
 			// 释放内存
+
 			mysqli_free_result($retval);
 
+		}
+		public function sql_set()
+		{
+			$sql = 'UPDATE runoob_tbl
+		        SET runoob_title="Python 教程"
+		        WHERE runoob_id=6';
+		    $sql = 'DELETE FROM runoob_tbl WHERE runoob_id=3';
+
+		    // runoob_tbl 表中读取 runoob_author 字段中以 COM 为结尾的的所有记录：
+		    $sql = 'SELECT runoob_id, runoob_title, 
+		        runoob_author, submission_date
+		        FROM runoob_tbl
+		        WHERE runoob_author LIKE "%COM"';
+
+		    // 查询后的数据按 submission_date 字段的降序排列后返回
+		    $sql = 'SELECT runoob_id, runoob_title, 
+		        runoob_author, submission_date
+		        FROM runoob_tbl
+		        ORDER BY  submission_date ASC';
+
+		    // 将数据表按名字进行分组，并统计每个人有多少条记录
+		    $sql = 'SELECT name, COUNT(*) FROM   employee_tbl GROUP BY name';
 		}
 	}
 ?>
