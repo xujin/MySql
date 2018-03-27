@@ -150,3 +150,16 @@ mysql>use 数据库
 然后使用source命令,后面参数为脚本文件(如这里用到的.sql)
 
 mysql>source d:wcnc_db.sql
+
+
+
+使用 WITH ROLLUP
+WITH ROLLUP 可以实现在分组统计数据基础上再进行相同的统计（SUM,AVG,COUNT…）。
+
+
+导出SQL格式的数据
+mysqldump -u root -p RUNOOB runoob_tbl > runoob_tbl.sql
+
+
+查找数据表中 runoob_test_tbl 列是否为 NULL，必须使用 IS NULL 和 IS NOT NULL，如下实例：
+mysql> SELECT * FROM runoob_test_tbl WHERE runoob_count IS NULL;

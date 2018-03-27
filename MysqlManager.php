@@ -154,6 +154,18 @@
 
 		    // 将数据表按名字进行分组，并统计每个人有多少条记录
 		    $sql = 'SELECT name, COUNT(*) FROM   employee_tbl GROUP BY name';
+
+		    // 数据表按名字进行分组，再统计每个人登录的次数：
+		    $sql = 'SELECT name, SUM(singin) as singin_count FROM  employee_tbl GROUP BY name WITH ROLLUP';
+
+		    // INNER JOIN(也可以省略 INNER 使用 JOIN，效果一样)连接两张表来读取runoob_tbl表中所有runoob_author字段在tcount_tbl表对应的runoob_count字段值
+		    $sql = 'SELECT a.runoob_id, a.runoob_author, b.runoob_count FROM runoob_tbl a INNER JOIN tcount_tbl b ON a.runoob_author = b.runoob_author';
+
+		    // LEFT JOIN，该语句会读取左边的数据表 runoob_tbl 的所有选取的字段数据，即便在右侧表 tcount_tbl中 没有对应的 runoob_author 字段值
+		    $sql = ' SELECT a.runoob_id, a.runoob_author, b.runoob_count FROM runoob_tbl a LEFT JOIN tcount_tbl b ON a.runoob_author = b.runoob_author';
+
+		    // RIGHT JOIN，该语句会读取右边的数据表 tcount_tbl 的所有选取的字段数据，即便在左侧表 runoob_tbl 中没有对应的runoob_author 字段值
+		    $sql = 'SELECT a.runoob_id, a.runoob_author, b.runoob_count FROM runoob_tbl a RIGHT JOIN tcount_tbl b ON a.runoob_author = b.runoob_author';
 		}
 	}
 ?>
