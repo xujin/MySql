@@ -163,3 +163,4 @@ mysqldump -u root -p RUNOOB runoob_tbl > runoob_tbl.sql
 
 查找数据表中 runoob_test_tbl 列是否为 NULL，必须使用 IS NULL 和 IS NOT NULL，如下实例：
 mysql> SELECT * FROM runoob_test_tbl WHERE runoob_count IS NULL;
+mysql> SELECT * from runoob_test_tbl WHERE runoob_count IS NOT NULL;
